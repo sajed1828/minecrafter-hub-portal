@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Download, Monitor, Smartphone, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface DownloadCardProps {
   title: string;
@@ -24,6 +25,7 @@ const DownloadCard = ({
   fileSize,
   lastUpdate
 }: DownloadCardProps) => {
+  const { t, dir } = useLanguage();
   const getPlatformIcon = () => {
     switch (platform) {
       case "java":
@@ -51,10 +53,10 @@ const DownloadCard = ({
   };
 
   return (
-    <Card className="gaming-card relative overflow-hidden group" dir="rtl">
+    <Card className="gaming-card relative overflow-hidden group" dir={dir}>
       {isRecommended && (
-        <Badge className="absolute top-4 right-4 gradient-primary border-0 text-primary-foreground">
-          الأكثر شعبية
+        <Badge className={`absolute top-4 ${dir === "rtl" ? "right-4" : "left-4"} gradient-primary border-0 text-primary-foreground`}>
+          {t("common.most.popular")}
         </Badge>
       )}
       
@@ -82,15 +84,15 @@ const DownloadCard = ({
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 text-sm">
           <div>
-            <p className="text-muted-foreground">التحميلات</p>
+            <p className="text-muted-foreground">{t("common.downloads")}</p>
             <p className="font-semibold text-accent">{downloadCount}</p>
           </div>
           <div>
-            <p className="text-muted-foreground">الحجم</p>
+            <p className="text-muted-foreground">{t("common.size")}</p>
             <p className="font-semibold text-accent">{fileSize}</p>
           </div>
           <div>
-            <p className="text-muted-foreground">التحديث</p>
+            <p className="text-muted-foreground">{t("common.update")}</p>
             <p className="font-semibold text-accent">{lastUpdate}</p>
           </div>
         </div>
@@ -100,23 +102,23 @@ const DownloadCard = ({
           className="w-full gradient-primary group-hover:shadow-lg transition-all duration-300"
           size="lg"
         >
-          <Download className="ml-2 h-4 w-4" />
-          تحميل مجاني
+          <Download className={dir === "rtl" ? "ml-2 h-4 w-4" : "mr-2 h-4 w-4"} />
+          {t("common.free.download")}
         </Button>
         
         {/* Features */}
         <div className="text-xs text-muted-foreground space-y-1">
           <div className="flex items-center gap-2">
             <CheckCircle className="h-3 w-3 text-primary" />
-            <span>آمن ومضمون 100%</span>
+            <span>{t("common.safe.guaranteed")}</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="h-3 w-3 text-primary" />
-            <span>بدون إعلانات مزعجة</span>
+            <span>{t("common.no.ads")}</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="h-3 w-3 text-primary" />
-            <span>سرعة تحميل عالية</span>
+            <span>{t("common.high.speed")}</span>
           </div>
         </div>
       </div>

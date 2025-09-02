@@ -2,43 +2,46 @@ import MinecraftHeader from "@/components/MinecraftHeader";
 import MinecraftHero from "@/components/MinecraftHero";
 import MinecraftFooter from "@/components/MinecraftFooter";
 import DownloadCard from "@/components/DownloadCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { t, dir } = useLanguage();
+  
   const minecraftVersions = [
     {
-      title: "ماين كرافت جافا إديشن",
-      version: "الإصدار 1.21.3",
-      description: "النسخة الأصلية والأكثر شمولية من ماين كرافت مع إمكانيات لا محدودة للتعديل والإضافات.",
+      title: t("version.java.title"),
+      version: "Version 1.21.3",
+      description: t("version.java.description"),
       platform: "java" as const,
       isRecommended: true,
       downloadCount: "50M+",
       fileSize: "1.2 GB",
-      lastUpdate: "اليوم"
+      lastUpdate: t("common.today")
     },
     {
-      title: "ماين كرافت بيدروك",
-      version: "الإصدار 1.21.30",
-      description: "نسخة محسنة للأداء والتشغيل المتقاطع بين جميع المنصات مع أصدقائك.",
+      title: t("version.bedrock.title"),
+      version: "Version 1.21.30",
+      description: t("version.bedrock.description"),
       platform: "bedrock" as const,
       isRecommended: false,
       downloadCount: "30M+",
       fileSize: "800 MB",
-      lastUpdate: "أمس"
+      lastUpdate: t("common.yesterday")
     },
     {
-      title: "ماين كرافت بوكيت إديشن",
-      version: "الإصدار 1.21.31",
-      description: "نسخة الجوال المحمولة التي تتيح لك اللعب في أي مكان وزمان مع تحكم محسن.",
+      title: t("version.mobile.title"),
+      version: "Version 1.21.31",
+      description: t("version.mobile.description"),
       platform: "mobile" as const,
       isRecommended: false,
       downloadCount: "100M+",
       fileSize: "300 MB",
-      lastUpdate: "قبل 3 أيام"
+      lastUpdate: t("common.days.ago")
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       {/* SEO Meta tags are handled in index.html */}
       
       {/* Header */}
@@ -53,10 +56,10 @@ const Index = () => {
           {/* Section Header */}
           <div className="text-center space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              حمل <span className="gradient-primary bg-clip-text text-transparent">الإصدارات</span> المتاحة
+              {t("downloads.title")} <span className="gradient-primary bg-clip-text text-transparent">{t("downloads.title.highlight")}</span> {t("downloads.title.end")}
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              اختر الإصدار المناسب لجهازك واستمتع بتجربة ماين كرافت المثلى
+              {t("downloads.subtitle")}
             </p>
           </div>
           
@@ -82,7 +85,7 @@ const Index = () => {
         <section className="py-20">
           <div className="text-center space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              لماذا تختار <span className="text-primary">موقعنا؟</span>
+              {t("features.title")} <span className="text-primary">{t("features.title.highlight")}</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -90,32 +93,32 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary/20 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-2xl">⚡</span>
                 </div>
-                <h3 className="font-semibold text-card-foreground">تحميل سريع</h3>
-                <p className="text-muted-foreground text-sm">سرعة تحميل عالية من خوادم محسنة</p>
+                <h3 className="font-semibold text-card-foreground">{t("feature.speed.title")}</h3>
+                <p className="text-muted-foreground text-sm">{t("feature.speed.desc")}</p>
               </div>
               
               <div className="gaming-card text-center space-y-4">
                 <div className="w-16 h-16 bg-accent/20 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-2xl">🛡️</span>
                 </div>
-                <h3 className="font-semibold text-card-foreground">آمن ومضمون</h3>
-                <p className="text-muted-foreground text-sm">جميع الملفات مفحوصة ومضمونة 100%</p>
+                <h3 className="font-semibold text-card-foreground">{t("feature.safe.title")}</h3>
+                <p className="text-muted-foreground text-sm">{t("feature.safe.desc")}</p>
               </div>
               
               <div className="gaming-card text-center space-y-4">
                 <div className="w-16 h-16 bg-gaming-blue/20 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-2xl">🔄</span>
                 </div>
-                <h3 className="font-semibold text-card-foreground">تحديثات مستمرة</h3>
-                <p className="text-muted-foreground text-sm">أحدث الإصدارات فور إطلاقها</p>
+                <h3 className="font-semibold text-card-foreground">{t("feature.updates.title")}</h3>
+                <p className="text-muted-foreground text-sm">{t("feature.updates.desc")}</p>
               </div>
               
               <div className="gaming-card text-center space-y-4">
                 <div className="w-16 h-16 bg-gaming-purple/20 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-2xl">🎮</span>
                 </div>
-                <h3 className="font-semibold text-card-foreground">دعم عربي</h3>
-                <p className="text-muted-foreground text-sm">دعم فني باللغة العربية على مدار الساعة</p>
+                <h3 className="font-semibold text-card-foreground">{t("feature.support.title")}</h3>
+                <p className="text-muted-foreground text-sm">{t("feature.support.desc")}</p>
               </div>
             </div>
           </div>
