@@ -1,40 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+}
 
+/* Minecraft-inspired design system */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Gaming Dark Theme - Minecraft Inspired */
+    --background: 220 15% 8%;
+    --foreground: 120 10% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 12% 12%;
+    --card-foreground: 120 8% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 12% 12%;
+    --popover-foreground: 120 8% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Minecraft Green Primary */
+    --primary: 142 76% 36%;
+    --primary-foreground: 120 10% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Minecraft Blue Secondary */
+    --secondary: 220 25% 25%;
+    --secondary-foreground: 120 8% 92%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Darker variants */
+    --muted: 220 10% 20%;
+    --muted-foreground: 120 5% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Gaming accent - Orange/Gold */
+    --accent: 35 100% 50%;
+    --accent-foreground: 220 15% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 120 10% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 8% 25%;
+    --input: 220 8% 18%;
+    --ring: 142 76% 36%;
+
+    /* Custom gaming colors */
+    --gaming-green: 142 76% 36%;
+    --gaming-blue: 220 80% 50%;
+    --gaming-orange: 35 100% 50%;
+    --gaming-purple: 270 70% 60%;
+    
+    /* Beautiful gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 70% 45%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 80% 50%), hsl(240 70% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 8%) 0%, hsl(142 76% 36% / 0.1) 100%);
+    
+    /* Gaming shadows */
+    --shadow-glow: 0 0 30px hsl(142 76% 36% / 0.3);
+    --shadow-card: 0 10px 30px hsl(220 15% 8% / 0.5);
 
     --radius: 0.5rem;
 
@@ -101,5 +125,36 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Gaming card component */
+  .gaming-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .gaming-card:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+  
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
   }
 }
