@@ -13,6 +13,7 @@ interface DownloadCardProps {
   downloadCount: string;
   fileSize: string;
   lastUpdate: string;
+  downloadLink: string; 
 }
 
 const DownloadCard = ({
@@ -23,9 +24,11 @@ const DownloadCard = ({
   isRecommended = false,
   downloadCount,
   fileSize,
-  lastUpdate
+  lastUpdate,
+  downloadLink = "https://launcher.mojang.com/download/MinecraftInstaller.exe?ref=mcnet", 
 }: DownloadCardProps) => {
   const { t, dir } = useLanguage();
+
   const getPlatformIcon = () => {
     switch (platform) {
       case "java":
@@ -55,32 +58,32 @@ const DownloadCard = ({
   return (
     <Card className="gaming-card relative overflow-hidden group" dir={dir}>
       {isRecommended && (
-        <Badge className={`absolute top-4 ${dir === "rtl" ? "right-4" : "left-4"} gradient-primary border-0 text-primary-foreground`}>
+        <Badge
+          className={`absolute top-4 ${
+            dir === "rtl" ? "right-4" : "left-4"
+          } gradient-primary border-0 text-primary-foreground`}
+        >
           {t("common.most.popular")}
         </Badge>
       )}
-      
+
       <div className="p-6 space-y-4">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="space-y-2">
             <h3 className="text-xl font-bold text-card-foreground">{title}</h3>
             <div className="flex items-center gap-2">
-              <div className={getPlatformColor()}>
-                {getPlatformIcon()}
-              </div>
+              <div className={getPlatformColor()}>{getPlatformIcon()}</div>
               <span className="text-sm font-medium text-accent">{version}</span>
             </div>
           </div>
-          
+
           <CheckCircle className="h-6 w-6 text-primary" />
         </div>
-        
+
         {/* Description */}
-        <p className="text-muted-foreground leading-relaxed">
-          {description}
-        </p>
-        
+        <p className="text-muted-foreground leading-relaxed">{description}</p>
+
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 text-sm">
           <div>
@@ -96,16 +99,27 @@ const DownloadCard = ({
             <p className="font-semibold text-accent">{lastUpdate}</p>
           </div>
         </div>
-        
+
         {/* Download Button */}
-        <Button 
-          className="w-full gradient-primary group-hover:shadow-lg transition-all duration-300"
-          size="lg"
+        <a
+          href={downloadLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
         >
-          <Download className={dir === "rtl" ? "ml-2 h-4 w-4" : "mr-2 h-4 w-4"} />
-          {t("common.free.download")}
-        </Button>
-        
+          <Button
+            className="w-full gradient-primary group-hover:shadow-lg transition-all duration-300"
+            size="lg"
+          >
+            <Download
+              className={
+                dir === "rtl" ? "ml-2 h-4 w-4" : "mr-2 h-4 w-4"
+              }
+            />
+            {t("common.free.download")}
+          </Button>
+        </a>
+
         {/* Features */}
         <div className="text-xs text-muted-foreground space-y-1">
           <div className="flex items-center gap-2">
