@@ -6,39 +6,42 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const { t, dir } = useLanguage();
-  
+
   const minecraftVersions = [
-    {
-      title: t("version.java.title"),
-      version: "Version 1.21.3",
-      description: t("version.java.description"),
-      platform: "java" as const,
-      isRecommended: true,
-      downloadCount: "50M+",
-      fileSize: "1.2 GB",
-      lastUpdate: t("common.today")
-    },
-    {
-      title: t("version.bedrock.title"),
-      version: "Version 1.21.30",
-      description: t("version.bedrock.description"),
-      platform: "bedrock" as const,
-      isRecommended: false,
-      downloadCount: "30M+",
-      fileSize: "800 MB",
-      lastUpdate: t("common.yesterday")
-    },
-    {
-      title: t("version.mobile.title"),
-      version: "Version 1.21.31",
-      description: t("version.mobile.description"),
-      platform: "mobile" as const,
-      isRecommended: false,
-      downloadCount: "100M+",
-      fileSize: "300 MB",
-      lastUpdate: t("common.days.ago")
-    }
-  ];
+  {
+    title: t("version.java.title"),
+    version: "Version 1.21.3",
+    description: t("version.java.description"),
+    platform: "java" as const,
+    isRecommended: true,
+    downloadCount: "50M+",
+    fileSize: "1.2 GB",
+    lastUpdate: t("common.today"),
+    downloadLink: "https://example.com/java-download" // 👈 رابط التحميل
+  },
+  {
+    title: t("version.bedrock.title"),
+    version: "Version 1.21.30",
+    description: t("version.bedrock.description"),
+    platform: "bedrock" as const,
+    isRecommended: false,
+    downloadCount: "30M+",
+    fileSize: "800 MB",
+    lastUpdate: t("common.yesterday"),
+    downloadLink: "https://example.com/bedrock-download" // 👈 رابط التحميل
+  },
+  {
+    title: t("version.mobile.title"),
+    version: "Version 1.21.31",
+    description: t("version.mobile.description"),
+    platform: "mobile" as const,
+    isRecommended: false,
+    downloadCount: "100M+",
+    fileSize: "300 MB",
+    lastUpdate: t("common.days.ago"),
+    downloadLink: "https://example.com/mobile-download" // 👈 رابط التحميل
+  }
+];
 
   return (
     <div className="min-h-screen bg-background" dir={dir}>
